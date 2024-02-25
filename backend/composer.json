@@ -1,0 +1,16 @@
+{
+  "name": "vinitahj/address-book",
+  "description": "A tiny version of Address Book in Core Php",
+  "autoload": {
+    "psr-4": {
+      "Config\\": "config/"
+    }
+  },
+  "authors": [
+    {
+      "name": "vinitahj",
+      "email": "vinitahj@gmail.com"
+    }
+  ],
+  "require": {}
+}

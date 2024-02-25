@@ -6,7 +6,7 @@ This guide provides step-by-step instructions on how to setup application with r
 
 ## Prerequisites
 
-> Before you start, ensure you have **PHP** and **MySQL** installed and running on your system. This project is designed to be run in a local development environment such as **XAMPP**, **WAMP** or any native **PHP** server setup.
+> Before you start, ensure you have **PHP**, **MySQL** and **Composer** installed and running on your system. This project is designed to be run in a local development environment such as **XAMPP**, **WAMP** or any native **PHP** server setup.
 
 ## Installation
 
@@ -27,6 +27,22 @@ Clone the project repository to your local machine or download the ZIP file and 
 
 ```bash
 http://localhost/tiny-address-book-php-angular/backend/public/
+```
+
+### Configure Your Environment:
+
+- Navigate to the project's backend directory.
+- Copy .env.example to a new file named .env.
+- Edit the .env file to set your database connection details, including the database name, user, and password.
+
+### Configure Composer for Autoloading:
+
+- Open a terminal or command prompt.
+- Navigate to the root directory of the backend application.
+- To generate the vendor directory and the autoload.php file run following command.
+
+```bash
+composer dump-autoload
 ```
 
 # Angular Application Setup Guide

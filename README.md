@@ -39,10 +39,22 @@ http://localhost/tiny-address-book-php-angular/backend/public/
 
 - Open a terminal or command prompt.
 - Navigate to the root directory of the backend application.
-- To generate the vendor directory and the autoload.php file run following command.
+- To generate the vendor directory and the autoload.php file.**Note**: if vendor folder does not exists then run following command else you can **Skip** this step.
 
 ```bash
 composer dump-autoload
+```
+
+### Database Setup:
+
+- Ensure MySQL is running.
+- Open your MySQL client (phpMyAdmin, MySQL Workbench, or command line).
+- Create a new database named as per the .env file configuration.
+- Import the SQL file located in backend/database/setup.sql to create tables and insert test data.
+  If you are unable to import the SQL file through a MySQL client, you can execute the database migration and seeding by accessing the following URL:
+
+```plaintext
+http://localhost/tiny-address-book-php-angular/backend/public/migrate
 ```
 
 # Angular Application Setup Guide

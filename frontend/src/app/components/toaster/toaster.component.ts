@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   imports: [NgbModule, CommonModule],
   templateUrl: './toaster.component.html',
   styleUrl: './toaster.component.scss',
+  host: {
+    class: 'toast-container position-fixed top-0 start-50 translate-middle-x',
+  },
 })
 export class ToasterComponent {
   constructor(public toasterService: ToasterService) {}

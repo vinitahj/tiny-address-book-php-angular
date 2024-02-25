@@ -120,3 +120,13 @@ ng generate component components/header
 ng generate component components/footer
 ng generate component components/toaster
 ```
+
+### Adding Bootstrap
+
+Install @ng-bootstrap/ng-bootstrap for Bootstrap integration:
+
+```bash
+npm install @ng-bootstrap/ng-bootstrap@next --force
+npm install bootstrap bootstrap-icons
+ng add @ng-bootstrap/ng-bootstrap --legacy-peer-deps
+```

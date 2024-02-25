@@ -3,7 +3,8 @@
   "description": "A tiny version of Address Book in Core Php",
   "autoload": {
     "psr-4": {
-      "Config\\": "config/"
+      "Config\\": "config/",
+      "App\\": "app/"
     }
   },
   "authors": [

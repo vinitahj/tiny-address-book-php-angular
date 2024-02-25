@@ -6,9 +6,13 @@ require_once __DIR__ . '/../routes/web.php';
 
 use Config\EnvLoader;
 use App\Http\Route;
+use Config\HandleCors;
 
 // Load environment variables
 EnvLoader::load();
+
+// Set CORS Headers
+HandleCors::setHeaders();
 
 // Load the routes
 $appUrl = getenv('APP_URL');

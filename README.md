@@ -102,3 +102,21 @@ ng serve
 ```bash
 http://localhost:4200/
 ```
+
+### Generating Components
+
+- Generate the necessary components for the address book feature:
+
+```bash
+ng generate component components/address-book
+ng generate component components/address-book/grid
+ng generate component components/address-book/form
+```
+
+- Create additional UI components:
+
+```bash
+ng generate component components/header
+ng generate component components/footer
+ng generate component components/toaster
+```

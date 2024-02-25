@@ -4,7 +4,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Config\EnvLoader;
+use Config\Database;
 // Load environment variables
 EnvLoader::load();
 
-echo getenv('APP_URL');
+// Connect Database
+$db = (new Database())->connect();

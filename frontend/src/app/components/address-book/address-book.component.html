@@ -2,6 +2,21 @@
   <div class="row align-items-center mb-3">
     <h2 class="col">Address Book Entries</h2>
     <div class="col-auto">
+      <div class="btn-group me-3">
+        <a
+          class="btn btn-dark dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Export As
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="exportAs('xml')">XML</a></li>
+          <li><a class="dropdown-item" (click)="exportAs('json')">JSON</a></li>
+        </ul>
+      </div>
       <button type="button" class="btn btn-success" (click)="addForm()">
         <i class="bi bi-plus"></i> Add New Address
       </button>

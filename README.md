@@ -139,3 +139,11 @@ Create services for the address book and toaster notifications:
 ng generate service services/address-book
 ng generate service services/toaster
 ```
+
+### Generating Interceptor
+
+Generate an interceptor for handling errors:
+
+```bash
+ng generate interceptor helpers/error
+```

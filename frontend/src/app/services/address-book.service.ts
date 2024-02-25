@@ -44,4 +44,19 @@ export class AddressBookService {
   deleteEntry(entry: any): Observable<any> {
     return this.http.delete(`${this.apiUrl}/entries/${entry.id}`);
   }
+
+  exportAs(type: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/entries/export/${type}`, {
+      responseType: 'blob',
+    });
+  }
+
+  downloadFile(data: Blob, filename: string) {
+    const a = document.createElement('a');
+    const objectUrl = URL.createObjectURL(data);
+    a.href = objectUrl;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(objectUrl);
+  }
 }

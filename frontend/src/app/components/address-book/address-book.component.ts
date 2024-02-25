@@ -31,6 +31,13 @@ export class AddressBookComponent implements OnInit, OnDestroy {
     this.addressBookService.setEntry(null);
     this.addressBookService.showEntryForm(true);
   }
+
+  exportAs(type: string) {
+    this.addressBookService.exportAs(type).subscribe((data) => {
+      this.addressBookService.downloadFile(data, `address-book.${type}`);
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

@@ -22,9 +22,55 @@ Clone the project repository to your local machine or download the ZIP file and 
 
 ### Run the Backend Server:
 
-- Ensure your PHP and MySQL services are running.
+- Ensure your **PHP** and **MySQL** services are running.
 - Access the backend application through your web browser:
 
 ```bash
 http://localhost/tiny-address-book-php-angular/backend/public/
+```
+
+# Angular Application Setup Guide
+
+This guide provides step-by-step instructions on how to create, serve, and manage an Angular application with additional components, services, and configuration.
+
+## Prerequisites
+
+Before you start, make sure you have Node.js and npm installed on your system. Angular CLI requires Node.js version 18 or later.
+
+## Setup
+
+### Install Angular CLI
+
+To create an Angular project, you need to install the Angular CLI globally:
+
+```bash
+npm install -g @angular/cli
+```
+
+### Create a New Angular Project
+
+Initialize a new Angular project by running:
+
+```bash
+ng new frontend
+```
+
+Follow the prompts to set up your project preferences.
+
+- Which stylesheet format would you like to use? - SCSS
+- Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? No
+
+### Serve the Project
+
+To serve your project locally, navigate to your project directory and run:
+
+```bash
+cd frontend
+ng serve
+```
+
+### Access application through your web browser:
+
+```bash
+http://localhost:4200/
 ```

@@ -1,1 +1,108 @@
-<p>form works!</p>
+<form [formGroup]="entryForm" (ngSubmit)="onSubmit()" class="needs-validation">
+  <input type="hidden" class="form-control" id="id" formControlName="id" />
+  <div class="row">
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        placeholder="Name"
+        required
+        [class.is-invalid]="hasError('name')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('name')">
+        Please provide a name.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="first_name"
+        formControlName="first_name"
+        placeholder="First Name"
+        required
+        [class.is-invalid]="hasError('first_name')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('first_name')">
+        Please provide a first name.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        placeholder="Email"
+        required
+        [class.is-invalid]="hasError('email')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('email')">
+        Please provide a valid email.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="street"
+        formControlName="street"
+        placeholder="Street"
+        required
+        [class.is-invalid]="hasError('street')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('street')">
+        Please provide a street.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="zip_code"
+        formControlName="zip_code"
+        placeholder="Zip Code"
+        required
+        [class.is-invalid]="hasError('zip_code')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('zip_code')">
+        Please provide a zip code.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <select
+        class="form-select"
+        id="city_id"
+        formControlName="city_id"
+        required
+        title="Select City"
+        [class.is-invalid]="hasError('city_id')"
+      >
+        <option value="">Select City</option>
+        <option *ngFor="let city of cities" [value]="city.id">
+          {{ city.name }}
+        </option>
+      </select>
+      <div class="invalid-feedback" *ngIf="hasError('city_id')">
+        Please select a city.
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-auto">
+      <button
+        type="button"
+        class="btn btn-outline-secondary me-3"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">
+        <span *ngIf="entryForm.value?.id">Update</span>
+        <span *ngIf="!entryForm.value?.id">Submit</span>
+      </button>
+    </div>
+  </div>
+</form>

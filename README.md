@@ -130,3 +130,12 @@ npm install @ng-bootstrap/ng-bootstrap@next --force
 npm install bootstrap bootstrap-icons
 ng add @ng-bootstrap/ng-bootstrap --legacy-peer-deps
 ```
+
+### Generating Services
+
+Create services for the address book and toaster notifications:
+
+```bash
+ng generate service services/address-book
+ng generate service services/toaster
+```

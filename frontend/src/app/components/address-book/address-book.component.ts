@@ -3,11 +3,12 @@ import { FormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
 import { AddressBookService } from '../../services/address-book.service';
 import { Subscription } from 'rxjs';
+import { GridComponent } from './grid/grid.component';
 
 @Component({
   selector: 'app-address-book',
   standalone: true,
-  imports: [FormComponent, CommonModule],
+  imports: [FormComponent, CommonModule, GridComponent],
   templateUrl: './address-book.component.html',
   styleUrl: './address-book.component.scss',
 })

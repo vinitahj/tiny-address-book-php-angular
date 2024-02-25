@@ -1,1 +1,43 @@
-<p>grid works!</p>
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Street</th>
+      <th scope="col">Zip Code</th>
+      <th scope="col">City</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let entry of entries"
+      [ngClass]="selectedId === entry.id ? 'table-active' : ''"
+    >
+      <td>{{ entry.name }}</td>
+      <td>{{ entry.first_name }}</td>
+      <td>{{ entry.email }}</td>
+      <td>{{ entry.street }}</td>
+      <td>{{ entry.zip_code }}</td>
+      <td>{{ entry.city_name }}</td>
+      <td>
+        <button
+          class="btn btn-outline-primary btn-sm me-2"
+          (click)="editEntry(entry)"
+        >
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button
+          class="btn btn-outline-danger btn-sm"
+          (click)="deleteEntry(entry)"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="entries.length <= 0">
+      <td colspan="7" class="text-center">No Records Found</td>
+    </tr>
+  </tbody>
+</table>

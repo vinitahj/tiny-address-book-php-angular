@@ -20,6 +20,11 @@ class BaseController
         header('Content-Type: application/json');
     }
 
+    protected function getPostData()
+    {
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
     public function index()
     {
         echo json_encode(['message' => 'Welcome to Address Book Application API']);
@@ -33,9 +38,9 @@ class BaseController
             $sql = str_replace('address_book', getenv('DB_DATABASE'), $sql);
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            echo json_encode(['status' => 200, 'message' => 'Database and tables created successfully!']);
+            echo json_encode(['message' => 'Database and tables created successfully!']);
         } catch (Exception $e) {
-            echo json_encode(['status' => 500, 'message' => $e->getMessage()]);
+            echo json_encode(['message' => $e->getMessage()]);
         }
     }
 }

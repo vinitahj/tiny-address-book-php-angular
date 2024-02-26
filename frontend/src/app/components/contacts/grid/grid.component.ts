@@ -80,6 +80,7 @@ export class GridComponent implements OnInit, OnDestroy {
         classname: 'bg-success text-light',
         delay: 5000,
       });
+      this.contactService.setContact(null);
       this.contacts = this.contacts.filter((res) => res.id != entry.id);
     });
   }

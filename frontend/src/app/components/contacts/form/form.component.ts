@@ -19,7 +19,7 @@ import { CityService } from '../../../services/city.service';
   styleUrl: './form.component.scss',
 })
 export class FormComponent {
-  entryForm!: FormGroup;
+  contactForm!: FormGroup;
   cities: any[] = [];
   private subscription: Subscription = new Subscription();
 
@@ -40,7 +40,7 @@ export class FormComponent {
   }
 
   createForm() {
-    this.entryForm = new FormGroup({
+    this.contactForm = new FormGroup({
       id: new FormControl(''),
       name: new FormControl('', Validators.required),
       first_name: new FormControl('', Validators.required),
@@ -52,62 +52,65 @@ export class FormComponent {
   }
 
   onCancel() {
-    this.entryForm.reset();
-    this.entryForm.patchValue({ city_id: '' });
+    this.contactForm.reset();
+    this.contactForm.patchValue({ city_id: '' });
     this.contactService.showContactForm(false);
   }
 
   hasError(field: string) {
     return (
-      this.entryForm.get(field)?.invalid && this.entryForm.get(field)?.touched
+      this.contactForm.get(field)?.invalid &&
+      this.contactForm.get(field)?.touched
     );
   }
 
   onSubmit() {
-    if (this.entryForm.valid) {
-      if (this.entryForm.value.id) {
+    if (this.contactForm.valid) {
+      if (this.contactForm.value.id) {
         this.updateModel();
       } else {
         this.addModel();
       }
     } else {
-      this.entryForm.markAllAsTouched();
+      this.contactForm.markAllAsTouched();
     }
   }
 
   loadModel() {
     this.subscription.add(
-      this.contactService.currentContact$.subscribe((entry) => {
-        if (entry) {
-          this.entryForm.patchValue(entry);
+      this.contactService.currentContact$.subscribe((contact) => {
+        if (contact) {
+          this.contactForm.patchValue(contact);
         } else {
-          this.entryForm.reset();
-          this.entryForm.patchValue({ city_id: '' });
+          this.contactForm.reset();
+          this.contactForm.patchValue({ city_id: '' });
         }
       })
     );
   }
   addModel() {
     this.subscription.add(
-      this.contactService.addContact(this.entryForm.value).subscribe((res) => {
-        if (res.data) {
-          this.contactService.setContact(res.data);
-          this.toasterService.show(res.message, {
-            classname: 'bg-success text-light',
-            delay: 5000,
-          });
-        }
-      })
+      this.contactService
+        .addContact(this.contactForm.value)
+        .subscribe((res) => {
+          if (res.data) {
+            this.contactService.setContact(res.data);
+            this.toasterService.show(res.message, {
+              classname: 'bg-success text-light',
+              delay: 5000,
+            });
+          }
+        })
     );
   }
 
   updateModel() {
     this.subscription.add(
       this.contactService
-        .updateContact(this.entryForm.value)
+        .updateContact(this.contactForm.value)
         .subscribe((res) => {
           if (res.data) {
-            this.contactService.setContact(this.entryForm.value);
+            this.contactService.setContact(this.contactForm.value);
             this.toasterService.show(res.message, {
               classname: 'bg-success text-light',
               delay: 5000,

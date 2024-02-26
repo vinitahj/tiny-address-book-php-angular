@@ -12,27 +12,27 @@
   </thead>
   <tbody>
     <tr
-      *ngFor="let entry of contacts"
-      [ngClass]="selectedId === entry.id ? 'table-active' : ''"
+      *ngFor="let contact of contacts"
+      [ngClass]="selectedId === contact.id ? 'table-active' : ''"
     >
-      <td>{{ entry.name }}</td>
-      <td>{{ entry.first_name }}</td>
-      <td>{{ entry.email }}</td>
-      <td>{{ entry.street }}</td>
-      <td>{{ entry.zip_code }}</td>
-      <td>{{ entry.city_name }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.first_name }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.street }}</td>
+      <td>{{ contact.zip_code }}</td>
+      <td>{{ contact.city_name }}</td>
       <td>
         <button
           class="btn btn-outline-primary btn-sm me-2"
           title="Edit Contact"
-          (click)="editContact(entry)"
+          (click)="editContact(contact)"
         >
           <i class="bi bi-pencil-fill"></i>
         </button>
         <button
           class="btn btn-outline-danger btn-sm"
           title="Delete Contact"
-          (click)="deleteContact(entry)"
+          (click)="deleteContact(contact)"
         >
           <i class="bi bi-trash"></i>
         </button>

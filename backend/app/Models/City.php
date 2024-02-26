@@ -2,22 +2,19 @@
 
 namespace App\Models;
 
-use PDO;
+use App\Repositories\CityRepository;
 
 class City
 {
-    private $db;
-    public function __construct(PDO $db)
+    private $cityRepository;
+    public function __construct(CityRepository $cityRepository)
     {
-        $this->db = $db;
+        $this->cityRepository = $cityRepository;
     }
 
     // Get all cities from the database
     public function getAll()
     {
-        $query = "SELECT * FROM cities";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->cityRepository->getAll();
     }
 }

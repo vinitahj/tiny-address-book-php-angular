@@ -28,9 +28,9 @@ export class GridComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadContacts();
     this.subscription.add(
-      this.contactService.currentContact$.subscribe((entry) => {
-        if (entry) {
-          this.loadContacts(entry.id);
+      this.contactService.currentContact$.subscribe((contact) => {
+        if (contact) {
+          this.loadContacts(contact.id);
         }
       })
     );
@@ -68,20 +68,20 @@ export class GridComponent implements OnInit, OnDestroy {
     );
   }
 
-  editContact(entry: any) {
+  editContact(contact: any) {
     this.contactService.showContactForm(true);
-    this.contactService.setContact(entry);
-    this.selectedId = entry.id;
+    this.contactService.setContact(contact);
+    this.selectedId = contact.id;
   }
 
-  deleteContact(entry: any) {
-    this.contactService.deleteContact(entry).subscribe((res) => {
+  deleteContact(contact: any) {
+    this.contactService.deleteContact(contact).subscribe((res) => {
       this.toasterService.show(res.message, {
         classname: 'bg-success text-light',
         delay: 5000,
       });
       this.contactService.setContact(null);
-      this.contacts = this.contacts.filter((res) => res.id != entry.id);
+      this.contacts = this.contacts.filter((res) => res.id != contact.id);
     });
   }
 

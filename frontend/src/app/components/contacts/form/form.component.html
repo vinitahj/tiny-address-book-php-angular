@@ -1,4 +1,8 @@
-<form [formGroup]="entryForm" (ngSubmit)="onSubmit()" class="needs-validation">
+<form
+  [formGroup]="contactForm"
+  (ngSubmit)="onSubmit()"
+  class="needs-validation"
+>
   <input type="hidden" class="form-control" id="id" formControlName="id" />
   <div class="row">
     <div class="mb-3 col-4">
@@ -100,8 +104,8 @@
         Cancel
       </button>
       <button type="submit" class="btn btn-success">
-        <span *ngIf="entryForm.value?.id">Update</span>
-        <span *ngIf="!entryForm.value?.id">Submit</span>
+        <span *ngIf="contactForm.value?.id">Update</span>
+        <span *ngIf="!contactForm.value?.id">Submit</span>
       </button>
     </div>
   </div>

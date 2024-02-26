@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\City;
+use App\Repositories\CityRepository;
 
 class CityController extends BaseController
 {
@@ -11,7 +12,8 @@ class CityController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->cityModel = new City($this->db);
+        $cityRepository = new CityRepository($this->db);
+        $this->cityModel = new City($cityRepository);
     }
 
     // Return all cities as JSON

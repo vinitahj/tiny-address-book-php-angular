@@ -17,8 +17,8 @@ export class ContactService {
 
   constructor(private http: HttpClient) {}
 
-  setContact(entry: any) {
-    this.currentContactSource.next(entry);
+  setContact(contact: any) {
+    this.currentContactSource.next(contact);
   }
 
   showContactForm(flag: boolean) {
@@ -33,16 +33,16 @@ export class ContactService {
     return this.http.get(`${this.apiUrl}/contacts`, { params });
   }
 
-  addContact(entry: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/contacts`, entry);
+  addContact(contact: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/contacts`, contact);
   }
 
-  updateContact(entry: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/contacts/${entry.id}`, entry);
+  updateContact(contact: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/contacts/${contact.id}`, contact);
   }
 
-  deleteContact(entry: any): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/contacts/${entry.id}`);
+  deleteContact(contact: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/contacts/${contact.id}`);
   }
 
   exportAs(type: string): Observable<Blob> {

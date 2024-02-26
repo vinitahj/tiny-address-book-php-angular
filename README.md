@@ -65,7 +65,7 @@ This guide provides step-by-step instructions on how to create, serve, and manag
 
 > Before you start, make sure you have **Node.js** and **npm** installed on your system. Angular CLI requires **Node.js** version **18** or later.
 
-## Setup
+## Setup Guide to create app components, services, interceptor and environment
 
 ### Install Angular CLI
 

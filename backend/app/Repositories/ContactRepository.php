@@ -28,6 +28,17 @@ class ContactRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Get all contacts from the database
+    public function getCollection()
+    {
+        $query = "SELECT e.*, c.name as city_name FROM contacts e JOIN cities c ON e.city_id = c.id ORDER BY id DESC";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Add a new contact to the database
     public function create($data)
     {

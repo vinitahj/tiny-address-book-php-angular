@@ -18,6 +18,11 @@ class Contact
         return $this->contactRepository->getAll($offset, $limit);
     }
 
+    public function getCollection()
+    {
+        return $this->contactRepository->getCollection();
+    }
+
     public function create($data)
     {
         return $this->contactRepository->create($data);

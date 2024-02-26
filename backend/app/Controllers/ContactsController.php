@@ -3,6 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\Contact;
+use App\Utilities\ExportData;
+use App\Export\ExportHandler;
+use App\Export\XmlExport;
+use App\Export\JsonExport;
 use App\Repositories\ContactRepository;
 
 class ContactsController extends BaseController
@@ -58,29 +62,14 @@ class ContactsController extends BaseController
     // Export contacts as per type
     public function export($type)
     {
-        $contacts = $this->contactModel->getAll();
+        $contacts = $this->contactModel->getCollection();
         if ($type === 'xml') {
-            $xmlData = new \SimpleXMLElement('<?xml version="1.0"?><contacts></contacts>');
-            $this->arrayToXml($contacts, $xmlData);
-            header('Content-Type: application/xml');
-            echo $xmlData->asXML();
+            $xmlExporter = new ExportHandler(new XmlExport('contacts'));
+            $xmlExporter->exportData($contacts);
         } else {
-            echo json_encode($contacts);
-        }
-    }
-
-    private function arrayToXml($data, &$xmlData)
-    {
-        foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                if (is_numeric($key)) {
-                    $key = 'item' . $key;
-                }
-                $subnode = $xmlData->addChild($key);
-                $this->arrayToXml($value, $subnode);
-            } else {
-                $xmlData->addChild("$key", htmlspecialchars("$value"));
-            }
+            // For JSON export
+            $jsonExporter = new ExportHandler(new JsonExport());
+            $jsonExporter->exportData($contacts);
         }
     }
 }

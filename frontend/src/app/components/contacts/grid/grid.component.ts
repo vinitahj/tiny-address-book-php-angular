@@ -30,7 +30,7 @@ export class GridComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.contactService.currentContact$.subscribe((contact) => {
         if (contact) {
-          this.loadContacts(contact.id);
+          this.loadContacts(true, contact.id);
         }
       })
     );
@@ -40,8 +40,8 @@ export class GridComponent implements OnInit, OnDestroy {
       })
     );
   }
-  loadContacts(selectedId?: any) {
-    if (selectedId) {
+  loadContacts(reset = false, selectedId?: any) {
+    if (reset) {
       this.offset = 0; // Reset offset
       this.contacts = []; // Reset contacts array
       this.allContactsLoaded = false; // Reset the flag
@@ -81,7 +81,7 @@ export class GridComponent implements OnInit, OnDestroy {
         delay: 5000,
       });
       this.contactService.setContact(null);
-      this.contacts = this.contacts.filter((res) => res.id != contact.id);
+      this.loadContacts(true);
     });
   }
 

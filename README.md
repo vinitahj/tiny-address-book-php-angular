@@ -147,3 +147,11 @@ Generate an interceptor for handling errors:
 ```bash
 ng generate interceptor helpers/error
 ```
+
+### Environment Configuration
+
+Generate environment files for different deployment settings:
+
+```bash
+ng generate environments
+```

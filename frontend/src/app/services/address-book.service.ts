@@ -1,13 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddressBookService {
-  private apiUrl =
-    'http://localhost/tiny-address-book-php-angular/backend/public';
+  private apiUrl = environment.apiUrl;
 
   private showEntryFormSource = new BehaviorSubject<boolean>(false);
   showEntryForm$ = this.showEntryFormSource.asObservable();

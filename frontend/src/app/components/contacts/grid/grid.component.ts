@@ -17,7 +17,7 @@ export class GridComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   private offset = 0;
-  private limit = 5;
+  private limit = 10;
   allContactsLoaded = false; // Flag to indicate all contacts are loaded
 
   constructor(

@@ -33,12 +33,24 @@ class BaseController
     public function migrate()
     {
         try {
-            $path =  '../database/setup.sql';
-            $sql = file_get_contents($path);
+            // get SQL files
+            $setupPath = '../database/migrate.sql';
+            $dataPath = '../database/seed.sql';
+
+            // Read the contents of the SQL files
+            $setupSql = file_get_contents($setupPath);
+            $dataSql = file_get_contents($dataPath);
+
+            // Combine the SQL commands
+            $sql = $setupSql . "\n" . $dataSql;
+
+            // Replace the placeholder database name with the actual name from the .env file
             $sql = str_replace('address_book', getenv('DB_DATABASE'), $sql);
+
+            // Prepare and execute the SQL
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            echo json_encode(['message' => 'Database and tables created successfully!']);
+            echo json_encode(['message' => 'Tables Created and Test Data Added Successfully!']);
         } catch (Exception $e) {
             echo json_encode(['message' => $e->getMessage()]);
         }

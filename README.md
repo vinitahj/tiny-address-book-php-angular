@@ -26,7 +26,7 @@ Clone the project repository to your local machine or download the ZIP file and 
 - Access the backend application through your web browser:
 
 ```bash
-http://localhost/tiny-address-book-php-angular/backend/public/
+http://localhost/tiny-address-book-php-angular/backend/
 ```
 
 ### Configure Your Environment:
@@ -54,7 +54,7 @@ composer dump-autoload
   If you are unable to import the SQL file through a MySQL client, you can execute the database migration and seeding by accessing the following URL:
 
 ```plaintext
-http://localhost/tiny-address-book-php-angular/backend/public/migrate
+http://localhost/tiny-address-book-php-angular/backend/migrate
 ```
 
 # Angular Application Setup Guide

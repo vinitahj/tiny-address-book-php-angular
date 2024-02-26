@@ -31,15 +31,15 @@ http://localhost/tiny-address-book-php-angular/backend/public/
 
 ### Configure Your Environment:
 
-- Navigate to the project's backend directory.
-- Copy .env.example to a new file named .env.
-- Edit the .env file to set your database connection details, including the database name, user, and password.
+- Navigate to the project's **backend** directory.
+- Copy **.env.example** to a new file named **.env**.
+- Edit the **.env** file to set your database connection details, including the database name, user, and password.
 
 ### Configure Composer for Autoloading:
 
 - Open a terminal or command prompt.
 - Navigate to the root directory of the backend application.
-- To generate the vendor directory and the autoload.php file.**Note**: if vendor folder does not exists then run following command else you can **Skip** this step.
+- To generate the **vendor** directory and the **autoload.php** file.**Note**: if vendor folder does not exists then run following command else you can **Skip** this step.
 
 ```bash
 composer dump-autoload
@@ -47,10 +47,10 @@ composer dump-autoload
 
 ### Database Setup:
 
-- Ensure MySQL is running.
-- Open your MySQL client (phpMyAdmin, MySQL Workbench, or command line).
-- Create a new database named as per the .env file configuration.
-- Import the SQL file located in backend/database/setup.sql to create tables and insert test data.
+- Ensure **MySQL** is running.
+- Open your **MySQL client** (phpMyAdmin, MySQL Workbench, or command line).
+- Create a new database named as per the **.env** file configuration.
+- Import the SQL file located in **backend/database/setup.sql** to create tables and insert test data.
   If you are unable to import the SQL file through a MySQL client, you can execute the database migration and seeding by accessing the following URL:
 
 ```plaintext
@@ -63,7 +63,7 @@ This guide provides step-by-step instructions on how to create, serve, and manag
 
 ## Prerequisites
 
-Before you start, make sure you have Node.js and npm installed on your system. Angular CLI requires Node.js version 18 or later.
+> Before you start, make sure you have **Node.js** and **npm** installed on your system. Angular CLI requires **Node.js** version **18** or later.
 
 ## Setup
 

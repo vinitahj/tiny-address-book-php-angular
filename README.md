@@ -1,4 +1,4 @@
-# Tiny Address Book Backend in Core Php and Frontend in Angular
+# Tiny Address Book Backend in Core PHP and Frontend in Angular
 
 ## Core PHP Backend Application Setup Guide
 
@@ -108,9 +108,9 @@ http://localhost:4200/
 - Generate the necessary components for the address book feature:
 
 ```bash
-ng generate component components/address-book
-ng generate component components/address-book/grid
-ng generate component components/address-book/form
+ng generate component components/contacts
+ng generate component components/contacts/grid
+ng generate component components/contacts/form
 ```
 
 - Create additional UI components:
@@ -136,8 +136,9 @@ ng add @ng-bootstrap/ng-bootstrap --legacy-peer-deps
 Create services for the address book and toaster notifications:
 
 ```bash
-ng generate service services/address-book
+ng generate service services/contact
 ng generate service services/toaster
+ng generate service services/city
 ```
 
 ### Generating Interceptor

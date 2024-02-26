@@ -4,7 +4,7 @@ namespace App\Models;
 
 use PDO;
 
-class Entry
+class Contact
 {
     private $db;
     public function __construct(PDO $db)
@@ -12,26 +12,26 @@ class Entry
         $this->db = $db;
     }
 
-     // Get all entries from the database
-     public function getAll($offset = 0, $limit = 10)
-     {
-         $query = "SELECT e.*, c.name as city_name FROM entries e JOIN cities c ON e.city_id = c.id ORDER BY id DESC LIMIT :limit OFFSET :offset";
- 
-         $stmt = $this->db->prepare($query);
- 
-         // Bind limit and offset parameters
-         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
- 
-         $stmt->execute();
- 
-         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-     }
+    // Get all contacts from the database
+    public function getAll($offset = 0, $limit = 10)
+    {
+        $query = "SELECT e.*, c.name as city_name FROM contacts e JOIN cities c ON e.city_id = c.id ORDER BY id DESC LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->db->prepare($query);
+
+        // Bind limit and offset parameters
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // Add a new entry to the database
     public function create($data)
     {
-        $query = "INSERT INTO entries (name, first_name, email, street, zip_code, city_id) VALUES (:name, :first_name, :email, :street, :zip_code, :city_id)";
+        $query = "INSERT INTO contacts (name, first_name, email, street, zip_code, city_id) VALUES (:name, :first_name, :email, :street, :zip_code, :city_id)";
         $stmt = $this->db->prepare($query);
 
         // Bind parameters
@@ -46,14 +46,14 @@ class Entry
 
         // Get the ID of the last inserted row
         $lastId = $this->db->lastInsertId();
-        $newEntry = $this->findById($lastId);
-        return $newEntry;
+        $newContact = $this->findById($lastId);
+        return $newContact;
     }
 
     // Update an existing row
     public function update($data, $id)
     {
-        $query = "UPDATE entries SET name = :name, first_name = :first_name, email = :email, street = :street, zip_code = :zip_code, city_id = :city_id WHERE id = :id";
+        $query = "UPDATE contacts SET name = :name, first_name = :first_name, email = :email, street = :street, zip_code = :zip_code, city_id = :city_id WHERE id = :id";
         $stmt = $this->db->prepare($query);
 
         // Bind parameters
@@ -67,14 +67,14 @@ class Entry
 
         $stmt->execute();
 
-        $updatedEntry = $this->findById($id);
-        return $updatedEntry;
+        $updatedContact = $this->findById($id);
+        return $updatedContact;
     }
 
     // Get a single entry by ID (for editing)
     public function findById($id)
     {
-        $query = "SELECT * FROM entries WHERE id = :id";
+        $query = "SELECT * FROM contacts WHERE id = :id";
         $stmt = $this->db->prepare($query);
 
         // Bind parameter
@@ -87,7 +87,7 @@ class Entry
     // Get a single entry by ID (for editing)
     public function deleteById($id)
     {
-        $query = "Delete FROM entries WHERE id = :id";
+        $query = "Delete FROM contacts WHERE id = :id";
         $stmt = $this->db->prepare($query);
 
         // Bind parameter

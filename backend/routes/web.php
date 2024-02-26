@@ -3,7 +3,7 @@
 use App\Http\Route;
 use App\Controllers\BaseController;
 use App\Controllers\CityController;
-use App\Controllers\AddressBookController;
+use App\Controllers\ContactsController;
 
 
 // Define routes
@@ -11,12 +11,12 @@ Route::add('GET', '/', 'BaseController@index');
 
 Route::add('GET', '/migrate', 'BaseController@migrate');
 
-Route::add('GET', '/entries', 'AddressBookController@index');
-Route::add('POST', '/entries', 'AddressBookController@store');
-Route::add('GET', '/entries/{id}', 'AddressBookController@show');
-Route::add('PUT', '/entries/{id}', 'AddressBookController@update');
-Route::add('DELETE', '/entries/{id}', 'AddressBookController@destroy');
+Route::add('GET', '/contacts', 'ContactsController@index');
+Route::add('POST', '/contacts', 'ContactsController@store');
+Route::add('GET', '/contacts/{id}', 'ContactsController@show');
+Route::add('PUT', '/contacts/{id}', 'ContactsController@update');
+Route::add('DELETE', '/contacts/{id}', 'ContactsController@destroy');
 
 Route::add('GET', '/cities', 'CityController@index');
 
-Route::add('GET', '/entries/export/{type}', 'AddressBookController@export');
+Route::add('GET', '/contacts/export/{type}', 'ContactsController@export');

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AddressBookComponent } from './components/address-book/address-book.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
-import { AddressBookService } from './services/address-book.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactService } from './services/contact.service';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { CityService } from './services/city.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     HeaderComponent,
     FooterComponent,
-    AddressBookComponent,
+    ContactsComponent,
     HttpClientModule,
     ToasterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [AddressBookService],
+  providers: [ContactService, CityService],
 })
 export class AppComponent {
   title = 'frontend';

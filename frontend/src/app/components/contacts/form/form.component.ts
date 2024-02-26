@@ -7,8 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AddressBookService } from '../../../services/address-book.service';
+import { ContactService } from '../../../services/contact.service';
 import { ToasterService } from '../../../services/toaster.service';
+import { CityService } from '../../../services/city.service';
 
 @Component({
   selector: 'app-form',
@@ -23,14 +24,15 @@ export class FormComponent {
   private subscription: Subscription = new Subscription();
 
   constructor(
-    private addressBookService: AddressBookService,
+    private contactService: ContactService,
+    private cityService: CityService,
     private toasterService: ToasterService
   ) {}
 
   ngOnInit() {
     this.createForm();
 
-    this.addressBookService.getCities().subscribe((data) => {
+    this.cityService.getAll().subscribe((data) => {
       this.cities = data;
     });
 
@@ -52,7 +54,7 @@ export class FormComponent {
   onCancel() {
     this.entryForm.reset();
     this.entryForm.patchValue({ city_id: '' });
-    this.addressBookService.showEntryForm(false);
+    this.contactService.showContactForm(false);
   }
 
   hasError(field: string) {
@@ -75,7 +77,7 @@ export class FormComponent {
 
   loadModel() {
     this.subscription.add(
-      this.addressBookService.currentEntry$.subscribe((entry) => {
+      this.contactService.currentContact$.subscribe((entry) => {
         if (entry) {
           this.entryForm.patchValue(entry);
         } else {
@@ -87,27 +89,25 @@ export class FormComponent {
   }
   addModel() {
     this.subscription.add(
-      this.addressBookService
-        .addEntry(this.entryForm.value)
-        .subscribe((res) => {
-          if (res.data) {
-            this.addressBookService.setEntry(res.data);
-            this.toasterService.show(res.message, {
-              classname: 'bg-success text-light',
-              delay: 5000,
-            });
-          }
-        })
+      this.contactService.addContact(this.entryForm.value).subscribe((res) => {
+        if (res.data) {
+          this.contactService.setContact(res.data);
+          this.toasterService.show(res.message, {
+            classname: 'bg-success text-light',
+            delay: 5000,
+          });
+        }
+      })
     );
   }
 
   updateModel() {
     this.subscription.add(
-      this.addressBookService
-        .updateEntry(this.entryForm.value)
+      this.contactService
+        .updateContact(this.entryForm.value)
         .subscribe((res) => {
           if (res.data) {
-            this.addressBookService.setEntry(this.entryForm.value);
+            this.contactService.setContact(this.entryForm.value);
             this.toasterService.show(res.message, {
               classname: 'bg-success text-light',
               delay: 5000,

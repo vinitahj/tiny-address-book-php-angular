@@ -2,26 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Models\Entry;
+use App\Models\Contact;
 
-class AddressBookController extends BaseController
+class ContactsController extends BaseController
 {
     private $entryModel;
 
     public function __construct()
     {
         parent::__construct();
-        $this->entryModel = new Entry($this->db);
+        $this->entryModel = new Contact($this->db);
     }
 
-    // Return all entries as JSON
+    // Return all contacts as JSON
     public function index()
     {
         $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
         $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
 
-        $entries = $this->entryModel->getAll($offset, $limit);
-        echo json_encode($entries);
+        $contacts = $this->entryModel->getAll($offset, $limit);
+        echo json_encode($contacts);
     }
 
     // Receive JSON data to store a new entry
@@ -29,7 +29,7 @@ class AddressBookController extends BaseController
     {
         $data = $this->getPostData();
         $newData = $this->entryModel->create($data);
-        echo json_encode(['message' => 'Entry created successfully', 'data' => $newData]);
+        echo json_encode(['message' => 'Contact created successfully', 'data' => $newData]);
     }
 
     // Return a single entry for editing
@@ -44,26 +44,26 @@ class AddressBookController extends BaseController
     {
         $data = $this->getPostData();
         $updatedData = $this->entryModel->update($data, $id);
-        echo json_encode(['message' => 'Entry updated successfully', 'data' => $updatedData]);
+        echo json_encode(['message' => 'Contact updated successfully', 'data' => $updatedData]);
     }
 
     public function destroy($id)
     {
         $this->entryModel->deleteById($id);
-        echo json_encode(['message' => 'Entry Deleted successfully']);
+        echo json_encode(['message' => 'Contact Deleted successfully']);
     }
 
-    // Export entries as per type
+    // Export contacts as per type
     public function export($type)
     {
-        $entries = $this->entryModel->getAll();
+        $contacts = $this->entryModel->getAll();
         if ($type === 'xml') {
-            $xmlData = new \SimpleXMLElement('<?xml version="1.0"?><entries></entries>');
-            $this->arrayToXml($entries, $xmlData);
+            $xmlData = new \SimpleXMLElement('<?xml version="1.0"?><contacts></contacts>');
+            $this->arrayToXml($contacts, $xmlData);
             header('Content-Type: application/xml');
             echo $xmlData->asXML();
         } else {
-            echo json_encode($entries);
+            echo json_encode($contacts);
         }
     }
 

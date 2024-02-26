@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AddressBookService } from '../../../services/address-book.service';
+import { ContactService } from '../../../services/contact.service';
 import { ToasterService } from '../../../services/toaster.service';
 import { CommonModule } from '@angular/common';
 
@@ -12,55 +12,55 @@ import { CommonModule } from '@angular/common';
   styleUrl: './grid.component.scss',
 })
 export class GridComponent implements OnInit, OnDestroy {
-  entries: any[] = [];
+  contacts: any[] = [];
   selectedId!: any;
   private subscription: Subscription = new Subscription();
 
   private offset = 0;
   private limit = 5;
-  allEntriesLoaded = false; // Flag to indicate all entries are loaded
+  allContactsLoaded = false; // Flag to indicate all contacts are loaded
 
   constructor(
-    private addressBookService: AddressBookService,
+    private contactService: ContactService,
     private toasterService: ToasterService
   ) {}
 
   ngOnInit() {
-    this.loadEntries();
+    this.loadContacts();
     this.subscription.add(
-      this.addressBookService.currentEntry$.subscribe((entry) => {
+      this.contactService.currentContact$.subscribe((entry) => {
         if (entry) {
-          this.loadEntries(entry.id);
+          this.loadContacts(entry.id);
         }
       })
     );
     this.subscription.add(
-      this.addressBookService.showEntryForm$.subscribe((res) => {
+      this.contactService.showContactForm$.subscribe((res) => {
         if (!res) this.selectedId = '';
       })
     );
   }
-  loadEntries(selectedId?: any) {
+  loadContacts(selectedId?: any) {
     if (selectedId) {
       this.offset = 0; // Reset offset
-      this.entries = []; // Reset entries array
-      this.allEntriesLoaded = false; // Reset the flag
+      this.contacts = []; // Reset contacts array
+      this.allContactsLoaded = false; // Reset the flag
     }
-    this.addressBookService.getAllEntries(this.offset, this.limit).subscribe(
+    this.contactService.getAllContacts(this.offset, this.limit).subscribe(
       (data) => {
         if (data.length > 0) {
-          this.entries = [...this.entries, ...data];
+          this.contacts = [...this.contacts, ...data];
           this.offset += this.limit;
           if (selectedId) {
             this.selectedId = selectedId;
           }
-          this.allEntriesLoaded = data.length < this.limit;
+          this.allContactsLoaded = data.length < this.limit;
         } else {
-          this.allEntriesLoaded = true;
+          this.allContactsLoaded = true;
         }
       },
       (error) => {
-        this.toasterService.show('Error fetching entries.', {
+        this.toasterService.show('Error fetching contacts.', {
           classname: 'bg-danger text-light',
           delay: 5000,
         });
@@ -68,19 +68,19 @@ export class GridComponent implements OnInit, OnDestroy {
     );
   }
 
-  editEntry(entry: any) {
-    this.addressBookService.showEntryForm(true);
-    this.addressBookService.setEntry(entry);
+  editContact(entry: any) {
+    this.contactService.showContactForm(true);
+    this.contactService.setContact(entry);
     this.selectedId = entry.id;
   }
 
-  deleteEntry(entry: any) {
-    this.addressBookService.deleteEntry(entry).subscribe((res) => {
+  deleteContact(entry: any) {
+    this.contactService.deleteContact(entry).subscribe((res) => {
       this.toasterService.show(res.message, {
         classname: 'bg-success text-light',
         delay: 5000,
       });
-      this.entries = this.entries.filter((res) => res.id != entry.id);
+      this.contacts = this.contacts.filter((res) => res.id != entry.id);
     });
   }
 

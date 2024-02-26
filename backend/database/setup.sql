@@ -3,7 +3,7 @@ CREATE TABLE address_book.cities (
     name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE address_book.entries (
+CREATE TABLE address_book.contacts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     first_name VARCHAR(35) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE address_book.entries (
 
 INSERT INTO address_book.cities (name) VALUES ('New York'), ('Los Angeles'), ('Chicago'), ('Houston');
 
-INSERT INTO address_book.entries (name, first_name, email, street, zip_code, city_id) VALUES
+INSERT INTO address_book.contacts (name, first_name, email, street, zip_code, city_id) VALUES
 ('Doe', 'John', 'john.doe@example.com', '123 Elm Street', '12345', 1),
 ('Smith', 'Jane', 'jane.smith@example.com', '456 Oak Avenue', '67890', 2),
 ('Johnson', 'Jim', 'jim.johnson@example.com', '789 Pine Road', '10112', 3),

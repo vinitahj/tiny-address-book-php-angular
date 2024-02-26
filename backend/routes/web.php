@@ -18,3 +18,5 @@ Route::add('PUT', '/entries/{id}', 'AddressBookController@update');
 Route::add('DELETE', '/entries/{id}', 'AddressBookController@destroy');
 
 Route::add('GET', '/cities', 'CityController@index');
+
+Route::add('GET', '/entries/export/{type}', 'AddressBookController@export');

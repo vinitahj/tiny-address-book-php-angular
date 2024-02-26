@@ -49,4 +49,33 @@ class AddressBookController extends BaseController
         $this->entryModel->deleteById($id);
         echo json_encode(['message' => 'Entry Deleted successfully']);
     }
+
+    // Export entries as per type
+    public function export($type)
+    {
+        $entries = $this->entryModel->getAll();
+        if ($type === 'xml') {
+            $xmlData = new \SimpleXMLElement('<?xml version="1.0"?><entries></entries>');
+            $this->arrayToXml($entries, $xmlData);
+            header('Content-Type: application/xml');
+            echo $xmlData->asXML();
+        } else {
+            echo json_encode($entries);
+        }
+    }
+
+    private function arrayToXml($data, &$xmlData)
+    {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                if (is_numeric($key)) {
+                    $key = 'item' . $key;
+                }
+                $subnode = $xmlData->addChild($key);
+                $this->arrayToXml($value, $subnode);
+            } else {
+                $xmlData->addChild("$key", htmlspecialchars("$value"));
+            }
+        }
+    }
 }

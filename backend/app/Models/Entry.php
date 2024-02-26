@@ -12,15 +12,21 @@ class Entry
         $this->db = $db;
     }
 
-    // Get all entries from the database
-    public function getAll()
-    {
-        $query = "SELECT e.*, c.name as city_name FROM entries e JOIN cities c ON e.city_id = c.id ORDER BY id DESC";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+     // Get all entries from the database
+     public function getAll($offset = 0, $limit = 10)
+     {
+         $query = "SELECT e.*, c.name as city_name FROM entries e JOIN cities c ON e.city_id = c.id ORDER BY id DESC LIMIT :limit OFFSET :offset";
+ 
+         $stmt = $this->db->prepare($query);
+ 
+         // Bind limit and offset parameters
+         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+ 
+         $stmt->execute();
+ 
+         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+     }
 
     // Add a new entry to the database
     public function create($data)

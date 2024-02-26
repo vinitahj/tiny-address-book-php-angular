@@ -16,6 +16,10 @@ export class GridComponent implements OnInit, OnDestroy {
   selectedId!: any;
   private subscription: Subscription = new Subscription();
 
+  private offset = 0;
+  private limit = 5;
+  allEntriesLoaded = false; // Flag to indicate all entries are loaded
+
   constructor(
     private addressBookService: AddressBookService,
     private toasterService: ToasterService
@@ -37,14 +41,22 @@ export class GridComponent implements OnInit, OnDestroy {
     );
   }
   loadEntries(selectedId?: any) {
-    this.addressBookService.getAllEntries().subscribe(
+    if (selectedId) {
+      this.offset = 0; // Reset offset
+      this.entries = []; // Reset entries array
+      this.allEntriesLoaded = false; // Reset the flag
+    }
+    this.addressBookService.getAllEntries(this.offset, this.limit).subscribe(
       (data) => {
         if (data.length > 0) {
-          this.entries = data;
-
+          this.entries = [...this.entries, ...data];
+          this.offset += this.limit;
           if (selectedId) {
             this.selectedId = selectedId;
           }
+          this.allEntriesLoaded = data.length < this.limit;
+        } else {
+          this.allEntriesLoaded = true;
         }
       },
       (error) => {

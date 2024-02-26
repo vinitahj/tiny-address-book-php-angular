@@ -17,7 +17,10 @@ class AddressBookController extends BaseController
     // Return all entries as JSON
     public function index()
     {
-        $entries = $this->entryModel->getAll();
+        $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
+
+        $entries = $this->entryModel->getAll($offset, $limit);
         echo json_encode($entries);
     }
 

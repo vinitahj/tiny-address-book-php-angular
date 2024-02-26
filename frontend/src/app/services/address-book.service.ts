@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -25,8 +25,12 @@ export class AddressBookService {
     this.showEntryFormSource.next(flag);
   }
 
-  getAllEntries(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/entries`);
+  getAllEntries(offset: number, limit: number): Observable<any> {
+    // Set HTTP params
+    let params = new HttpParams();
+    params = params.append('offset', offset.toString());
+    params = params.append('limit', limit.toString());
+    return this.http.get(`${this.apiUrl}/entries`, { params });
   }
 
   getCities(): Observable<any> {

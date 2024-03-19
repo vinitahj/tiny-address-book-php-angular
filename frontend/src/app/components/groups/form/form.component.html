@@ -1,0 +1,48 @@
+<form [formGroup]="groupForm" (ngSubmit)="onSubmit()" class="needs-validation">
+  <input type="hidden" class="form-control" id="id" formControlName="id" />
+  <div class="row">
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        placeholder="Name"
+        required
+        [class.is-invalid]="hasError('name')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('name')">
+        Please provide a name.
+      </div>
+    </div>
+    <div class="mb-3 col-4">
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        formControlName="description"
+        placeholder="Description"
+        required
+        [class.is-invalid]="hasError('description')"
+      />
+      <div class="invalid-feedback" *ngIf="hasError('description')">
+        Please provide description.
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-auto">
+      <button
+        type="button"
+        class="btn btn-outline-secondary me-3"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-success">
+        <span *ngIf="groupForm.value?.id">Update</span>
+        <span *ngIf="!groupForm.value?.id">Submit</span>
+      </button>
+    </div>
+  </div>
+</form>

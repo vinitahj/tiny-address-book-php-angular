@@ -111,6 +111,10 @@ http://localhost:4200/
 ng generate component components/contacts
 ng generate component components/contacts/grid
 ng generate component components/contacts/form
+
+ng generate component components/groups
+ng generate component components/groups/grid
+ng generate component components/groups/form
 ```
 
 - Create additional UI components:
@@ -139,6 +143,7 @@ Create services for the address book and toaster notifications:
 ng generate service services/contact
 ng generate service services/toaster
 ng generate service services/city
+ng generate service services/groups
 ```
 
 ### Generating Interceptor

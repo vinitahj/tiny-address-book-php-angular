@@ -1,4 +1,11 @@
 INSERT INTO
+    address_book.cities (name)
+VALUES ('New York'),
+    ('Los Angeles'),
+    ('Chicago'),
+    ('Houston');
+
+INSERT INTO
     address_book.contacts (
         name, first_name, email, street, zip_code, city_id
     )

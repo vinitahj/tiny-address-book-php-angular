@@ -1,0 +1,20 @@
+<div class="container my-4">
+  <div class="row align-items-center mb-3">
+    <h2 class="col">Groups</h2>
+    <div class="col-auto">
+      <button type="button" class="btn btn-success" (click)="addForm()">
+        <i class="bi bi-plus"></i> Add New Group
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mb-3" *ngIf="showForm">
+      <div class="card">
+        <div class="card-body">
+          <app-form></app-form>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-5"><app-grid /></div>
+  </div>
+</div>

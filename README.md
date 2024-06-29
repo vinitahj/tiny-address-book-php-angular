@@ -161,3 +161,7 @@ Generate environment files for different deployment settings:
 ```bash
 ng generate environments
 ```
+
+
+https://github.com/vinitahj/tiny-address-book-php-angular/assets/104367394/3312b7d1-c4e4-42ec-8c11-129fd1ea30ee
+
